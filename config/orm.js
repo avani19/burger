@@ -7,10 +7,10 @@ function printQuestionMarks(num){
   for (var i = 0; i<num; i++){
     arr.push('?');
   }
-  return arr.tostring();
+  return arr.toString();
 }
 
-function objTosql(ob){
+function objToSql(ob){
   var arr = [];
   for(var key in ob){
     if(ob.hasOwnProperty(key)){
@@ -36,7 +36,7 @@ queryString = queryString + '(';
 queryString = queryString + cols.toString();
 queryString = queryString + ')';
 queryString = queryString + 'VALUES (';
-queryString = queryString + printQuestionMarks(val.length);
+queryString = queryString + printQuestionMarks(vals.length);
 queryString = queryString + ')';
 
 console.log(queryString);
@@ -48,11 +48,11 @@ connection.query(queryString, vals, function(err, result){
 },
 
 updateOne: function (table, objColVals, condition, callback){
-  var queryString = 'UPDATE' + table;
+  var queryString = ' UPDATE ' + table;
 
-  queryString = queryString + 'SET';
-  queryString = queryString + objTosql(objColVals);
-  queryString = queryString + 'WHERE';
+  queryString = queryString + ' SET ';
+  queryString = queryString + objToSql(objColVals);
+  queryString = queryString + ' WHERE '; 
   queryString = queryString + condition;
 
   console.log(queryString);

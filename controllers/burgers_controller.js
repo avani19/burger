@@ -19,16 +19,16 @@ router.get('/burgers', function (req, res){
 });
 
 router.post('/burgers/create', function (req, res){
-  burger.insertOne(['Burger_name'], [req.body.Burger_name], function(){
+  burger.insertOne(['burger_name'], [req.body.bname], function(){
     res.redirect('/burgers');
   });
 });
 
 router.put('/burgers/update/:id', function (req, res){
-  var conditions = 'id = ' + req.params.id;
+  var condition = 'id = ' + req.params.id;
   console.log('condition', condition);
 
-  burger.update({ Devoured: req.body.Devoured}, condition, function (){
+  burger.updateOne({ devoured: req.body.devoured}, condition, function (){
     res.redirect('/burgers');
   });
 });
